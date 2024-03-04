@@ -1,7 +1,7 @@
 <?php
 // Este archivo se encarga de procesar la edición de usuarios
 
-include 'conexion.php';
+include 'conexion.php';         
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se han recibido todos los datos necesarios
