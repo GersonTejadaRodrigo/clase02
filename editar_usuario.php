@@ -1,5 +1,4 @@
 <?php
-// Este archivo se encarga de procesar la edición de usuarios
 
 include 'conexion.php';
 
@@ -8,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['id'], $_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['curso'], $_POST['correo'])) {
         $id = $_POST['id'];
         $usuario = $_POST['usuario'];
-        $contrasena = md5($_POST['contrasena']); // Aplicar MD5 a la nueva contraseña
+        $contrasena = md5($_POST['contrasena']);  
         $nombre = $_POST['nombre'];
         $curso = $_POST['curso'];
         $correo = $_POST['correo'];
