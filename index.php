@@ -9,7 +9,7 @@ if (isset($_SESSION['usuario'])) {
 
 if (isset($_POST['usuario'], $_POST['contrasena'])) {
     $usuario = $_POST['usuario'];
-    $contrasena = $_POST['contrasena'];
+    $contrasena = md5($_POST['contrasena']); // Aplicar MD5 a la contraseña proporcionada
     
     $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
     $result = $conn->query($sql);

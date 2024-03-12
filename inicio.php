@@ -116,19 +116,21 @@ if ($result->num_rows > 0) {
 
         // Función para eliminar un usuario
         function eliminarUsuario(id) {
-            if (confirm("¿Estás seguro de que quieres eliminar este usuario?")) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        // Recargar la página después de eliminar el usuario
-                        window.location.reload();
-                    }
-                };
-                xhttp.open("POST", "eliminar_usuario.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("id=" + id);
-            }
+        if (confirm("¿Estás seguro de que quieres eliminar este usuario?")) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Mostrar mensaje de éxito o error después de eliminar el usuario
+                    alert(this.responseText);
+                    // Recargar la página después de eliminar el usuario
+                    window.location.reload();
+                }
+            };
+            xhttp.open("POST", "eliminar_usuario.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("id=" + id);
         }
+    }
 
         // Cerrar el modal de edición al hacer clic en cualquier lugar fuera del modal
         window.onclick = function(event) {
