@@ -1,98 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exportar Tabla a PDF</title>
-    <!-- Incluir jsPDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-    <!-- Incluir html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js" integrity="sha512-sk0cNQsixYVuaLJRG0a/KRJo9KBkwTDqr+/V94YrifZ6qi8+OO3iJEoHi0LvcTVv1HaBbbIvpx+MCjOuLVnwKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        button {
-            margin-bottom: 10px;
-        }
-    </style>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Como exportar html a excel</title>
+
+    <!-- links para exportar a excel -->
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 </head>
 <body>
+<br><br>
 
-<table id="maintable">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Edad</th>
-            <th>País</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>John Doe</td>
-            <td>30</td>
-            <td>USA</td>
-        </tr>
-        <tr>
-            <td>Jane Smith</td>
-            <td>25</td>
-            <td>Canada</td>
-        </tr>
-        <tr>
-            <td>Carlos Pérez</td>
-            <td>35</td>
-            <td>México</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Como exportar datos de html a excel
+        </div>
+        <div class="card-body">
+            <button id="btnExportar" class="btn btn-success">
+                <i class="fas fa-file-excel"></i> Exportar datos a Excel
+            </button>
 
-<button id="pdfout">Exportar a PDF</button>
+            <table id="tabla" class="table table-border table-hover">
+                <thead>
+                <tr>
+                    <th>Nro</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Celular</th>
+                    <th>Año</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Gerson</td>
+                    <td>Tejada</td>
+                    <td>12345534</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Juan</td>
+                    <td>Perez</td>
+                    <td>29323007</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Marcos</td>
+                    <td>Lopez</td>
+                    <td>9123456</td>
+                    <td>25</td>
+                </tr>
 
-<script>
-    var maintable = document.getElementById('maintable');
-    var pdfout = document.getElementById('pdfout');
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    pdfout.onclick = function(){
-        var doc = new jsPDF('p', 'pt', 'letter');
-        var margin = 20;
-        var scale = (doc.internal.pageSize.width - margin * 2) / document.body.clientWidth;
-        var scale_mobile = (doc.internal.pageSize.width - margin * 2) / document.body.getBoundingClientRect().width;
-
-        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-            doc.html(maintable, {
-                x: margin,
-                y: margin,
-                html2canvas:{
-                    scale: scale_mobile,
-                },
-                callback: function(doc){
-                    doc.output('dataurlnewwindow', {filename: 'pdf.pdf'});
-                }
-            });
-        } else {
-            doc.html(maintable, {
-                x: margin,
-                y: margin,
-                html2canvas:{
-                    scale: scale,
-                },
-                callback: function(doc){
-                    doc.output('dataurlnewwindow', {filename: 'pdf.pdf'});
-                }
-            });
-        }
-    };
-</script>
+<script src="main.js"></script>
 
 </body>
 </html>
